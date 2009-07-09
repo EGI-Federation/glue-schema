@@ -1,0 +1,9 @@
+NAME=glue-schema
+VERSION=2.0.1
+RELEASE=1
+PREFIX=/
+LICENSE= EGEE
+VENDOR=EGEE
+PACKAGER=Laurence Field <Laurence.Field@cern.ch>
+GROUP=grid
+DESCRIPTION=LDAP schema file for the GLUE Schema version 2.0
