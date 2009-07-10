@@ -1,45 +1,31 @@
-%define metadata CONFIG
-%define name %( grep NAME %{metadata} | sed 's/^[^=]*=//' )
-%define version %( grep VERSION %{metadata} | sed 's/^[^=]*=//' )
-%define release %( grep RELEASE %{metadata} | sed 's/^[^=]*=//' )
-%define prefix %( grep PREFIX %{metadata} | sed 's/^[^=]*=//' )
-%define license %( grep LICENSE %{metadata} | sed 's/^[^=]*=//' )
-%define vendor %( grep VENDOR %{metadata} | sed 's/^[^=]*=//' )
-%define packager %( grep PACKAGER %{metadata} | sed 's/^[^=]*=//' )
-%define group %( grep GROUP %{metadata} | sed 's/^[^=]*=//' )
-%define desc %( grep DESCRIPTION %{metadata} | sed 's/^[^=]*= //' )
-
-Summary: %{name}
-Name: %{name}
-Version: %{version}
-Vendor: %{vendor}
-Release: %{release}
-License: %{license}
-Group: %{group}
-Source: %{name}-%{version}.src.tgz
-BuildArch: noarch
-Prefix: %{prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-build
-Packager: %{packager}
+Name:           glue-schema
+Version:        2.0.1
+Release:        1%{?dist}
+Summary:        LDAP schema file for the GLUE Schema version 2.
+Group:          Applications/Databases
+License:        
+URL:            http://forge.gridforum.org/sf/projects/glue-wg
+Source0:        http://glue.web.cern.ch/glue/glue-schema-%{version}.src.tgz
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
-%{desc}
-%prep
+LDAP schema file for the GLUE Schema version 2.0
 
-%setup -c
+%prep
+%setup -q
 
 %build
-make -f INSTALL install prefix=%{buildroot}%{prefix}
+%configure
 
-%post 
-
-%preun
-
-%postun
-
-%files
-%defattr(-,root,root)
-/etc/ldap/schema/
+%install
+rm -rf $RPM_BUILD_ROOT
+make -f INSTALL install prefix=$RPM_BUILD_ROOT
 
 %clean
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root,-)
+/etc/ldap/schema/
+
+%changelog
