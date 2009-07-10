@@ -3,7 +3,7 @@ Version:        2.0.1
 Release:        1%{?dist}
 Summary:        LDAP schema file for the GLUE Schema version 2.
 Group:          Applications/Databases
-License:        
+License:        OGF
 URL:            http://forge.gridforum.org/sf/projects/glue-wg
 Source0:        http://glue.web.cern.ch/glue/glue-schema-%{version}.src.tgz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -12,10 +12,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 LDAP schema file for the GLUE Schema version 2.0
 
 %prep
-%setup -q
-
-%build
-%configure
+%setup -q -c
 
 %install
 rm -rf $RPM_BUILD_ROOT
