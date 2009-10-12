@@ -789,7 +789,7 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.5.7
         STRUCTURAL
         MUST ( GLUE2EndpointID $ GLUE2EndpointURL $ GLUE2EndpointInterfaceName
 	$ GLUE2EndpointQualityLevel $ GLUE2EndpointHealthState $
-	GLUE2EndpointServingState )
+	GLUE2EndpointServingState $ GLUE2EndpointServiceForeignKey )
         MAY ( GLUE2EndpointCapability $ GLUE2EndpointTechnology $
 	GLUE2EndpointInterfaceVersion $ GLUE2EndpointInterfaceExtension $
 	GLUE2EndpointWSDL $ GLUE2EndpointSupportedProfile $ 
@@ -798,8 +798,7 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.5.7
 	GLUE2EndpointHealthStateInfo $ GLUE2EndpointStartTime $ 
 	GLUE2EndpointIssuerCA $ GLUE2EndpointTrustedCA $ 
 	GLUE2EndpointDowntimeAnnounce $ GLUE2EndpointDowntimeStart $
-	GLUE2EndpointDowntimeEnd $ GLUE2EndpointDowntimeInfo $
-	GLUE2EndpointServiceForeignKey )
+	GLUE2EndpointDowntimeEnd $ GLUE2EndpointDowntimeInfo )
  )
 
 # File:    schema/5-08-Share.schema
