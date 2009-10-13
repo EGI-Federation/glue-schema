@@ -1,5 +1,0 @@
-#!/usr/bin/make -f 
-
-install:
-	install -d ${prefix}/etc/ldap/schema
-	install --mode=0644 etc/ldap/schema/*.schema ${prefix}/etc/ldap/schema
