@@ -3,7 +3,7 @@
 # upstream: add some README file
 
 Name:           glue-schema
-Version:        2.0.2
+Version:        2.0.3
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE Schema
 Group:          Development/Tools
