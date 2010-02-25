@@ -1,0 +1,82 @@
+Name: glue-schema
+
+Files: *
+Copyright: © 2002-2006, Istituto Nazionale di Fisica Nucleare
+License: INFN
+    INFN Software License
+
+    Copyright (c) 2001 Istituto Nazionale di Fisica Nucleare (INFN).
+    All rights reserved.
+
+    Redistribution and use of this software, whether in source or
+    binary form and whether modified or not, are permitted subject to
+    the following conditions:
+
+    1. Redistribution of source code must reproduce the above
+       copyright notice and this list of conditions.
+
+    2. Redistribution in binary form must reproduce the above
+       copyright notice and this list of conditions in the user
+       documentation or, in the absence thereof, in the other
+       materials provided with the software.  The end-user
+       documentation must reproduce the following acknowledgment:
+
+       "This product includes software developed by INFN
+       (http://www.infn.it/)."
+
+       Alternatively, if that is where third-party acknowledgments
+       normally appear, this acknowledgment must be reproduced in the
+       software itself.
+
+    3. The name of INFN may not be used to endorse or promote
+       software, or products derived therefrom, except with prior
+       written permission by the INFN.
+
+    4. You are under no obligation to provide anyone with any bug
+       fixes, patches, upgrades or other modifications to the
+       features, functionality or performance of this software
+       ("enhancements") that you may develop over time. However, if
+       you publish or distribute your enhancements in source code form
+       without contemporaneously requiring users to enter into a
+       separate written license agreement, then you hereby grant the
+       INFN a non-exclusive, royalty-free perpetual license to
+       install, use, copy, modify, prepare derivative works of,
+       incorporate into the INFN software, distribute, and sublicense
+       your enhancements or derivative works thereof, whether in
+       binary or source code form.
+
+    DISCLAIMER:
+
+    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE WARRANTIES OF
+    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL INFN OR ITS PERSONNEL BE LIABLE FOR
+    ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+    CONSEQUENTIAL OR OTHER DAMAGES, INCLUDING, BUT NOT LIMITED TO,
+    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, LOSS OF USE, DATA OR
+    PROFITS, OR BUSINESS INTERRUPTION, HOWEVER CAUSED AND ON ANY
+    THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY OR TORT
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+    USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+    DAMAGE.
+
+Files: etc/ldap/schema/GLUE20.schema
+Copyright: © 2009, Open Grid Forum
+License: Copyright only
+    Copyright (C) Open Grid Forum (2009). All Rights Reserved.
+
+    This document and translations of it may be copied and furnished
+    to others, and derivative works that comment on or otherwise
+    explain it or assist in its implementation may be prepared,
+    copied, published and distributed, in whole or in part, without
+    restriction of any kind, provided that the above copyright notice
+    and this paragraph are included on all such copies and derivative
+    works. However, this document itself may not be modified in any
+    way, such as by removing the copyright notice or references to the
+    OGF or other organizations, except as needed for the purpose of
+    developing Grid Recommendations in which case the procedures for
+    copyrights defined in the OGF Document process must be followed,
+    or as required to translate it into languages other than English.
+
+    The limited permissions granted above are perpetual and will not
+    be revoked by the OGF or its successors or assignees.

@@ -1,12 +1,11 @@
-Source: 
-Section: grid
-Priority: extra
-Architecture: all
-Maintainer:
-Build-Depends: debhelper (>= 5), coreutils
-Standards-Version: 3.7.2
+Source: glue-schema
+Section: net
+Priority: optional
+Maintainer: Mattias Ellert <mattias.ellert@fysast.uu.se>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.8.4
 
-Package: 
+Package: glue-schema
 Architecture: all
-Depends: coreutils
-Description: 
+Description: LDAP schema files for the GLUE Schema
+ LDAP schema files for the GLUE Schema version 2.0
