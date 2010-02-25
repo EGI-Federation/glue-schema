@@ -1,13 +1,10 @@
 #!/usr/bin/make -f
 
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
-include CONFIG
-
 configure: configure-stamp
+
 configure-stamp:
 	dh_testdir
-	touch configure-stamp
+	touch $@
 
 build: build-stamp
 
@@ -28,22 +25,24 @@ install: build
 	dh_installdirs
 	$(MAKE) -f INSTALL prefix=debian/${NAME} install
 
-binary-indep: build install
-
-binary-arch: build install
+binary-indep: install
 	dh_testdir
 	dh_testroot
-	#dh_installdocs
-	dh_installexamples
+	dh_installdocs
+	dh_installchangelogs
 	dh_install
 	dh_installman
 	dh_compress
 	dh_fixperms
-	dh_perl
 	dh_installdeb
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
 
+binary-arch:
+#	:
+
 binary: binary-indep binary-arch
+	:
+
 .PHONY: build clean binary-indep binary-arch binary install configure
