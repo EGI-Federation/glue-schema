@@ -38,7 +38,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/ldap
-%doc
+%doc debian/copyright
 
 %changelog
 * Thu Feb 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.3-1
