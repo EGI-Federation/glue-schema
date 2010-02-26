@@ -23,7 +23,7 @@ install: build
 	dh_testroot
 	dh_clean -k 
 	dh_installdirs
-	$(MAKE) -f INSTALL prefix=debian/${NAME} install
+	$(MAKE) -f INSTALL prefix=debian/glue-schema install
 
 binary-indep: install
 	dh_testdir
