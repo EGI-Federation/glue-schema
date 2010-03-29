@@ -1,41 +1,43 @@
-include CONFIG
-PWD=$(shell pwd)
-control=scratch/${NAME}-${VERSION}/debian/control
-SCRATCH=${PWD}/scratch
+NAME= $(shell grep Name: *.spec | sed 's/^[^:]*:[^a-zA-Z]*//' )
+VERSION= $(shell grep Version: *.spec | sed 's/^[^:]*:[^0-9]*//' )
+RELEASE= $(shell grep Release: *.spec |cut -d"%" -f1 |sed 's/^[^:]*:[^0-9]*//')
+build=$(shell pwd)/build
 DATE=$(shell date "+%a, %d %b %Y %T %z")
-topdir:=$(shell rpm --eval %_topdir 2>/dev/null || ${SCRATCH} )
 
 default: 
 	@echo "Nothing to do"
 
+install:
+	@install -d ${prefix}/etc/ldap/schema
+	@install --mode=0644 etc/ldap/schema/*.schema ${prefix}/etc/ldap/schema
+
+dist:
+	@mkdir -p  $(build)/$(NAME)-$(VERSION)/
+	rsync -HaS --exclude ".svn" --exclude "$(build)" * $(build)/$(NAME)-$(VERSION)/
+	cd $(build); tar --gzip -cf $(NAME)-$(VERSION).tar.gz $(NAME)-$(VERSION)/; cd -
+
+sources: dist
+	cp $(build)/$(NAME)-$(VERSION).tar.gz .
+
+deb: dist
+	cd $(build)/$(NAME)-$(VERSION); dpkg-buildpackage -us -uc; cd -
+
+prepare: dist
+	@mkdir -p  $(build)/RPMS/noarch
+	@mkdir -p  $(build)/SRPMS/
+	@mkdir -p  $(build)/SPECS/
+	@mkdir -p  $(build)/SOURCES/
+	@mkdir -p  $(build)/BUILD/
+	cp $(build)/$(NAME)-$(VERSION).tar.gz $(build)/SOURCES 
+
+srpm: prepare
+	@rpmbuild -bs --define='_topdir ${build}' $(NAME).spec
+
+rpm: srpm
+	@rpmbuild --rebuild  --define='_topdir ${build} ' $(build)/SRPMS/$(NAME)-$(VERSION)-$(RELEASE).src.rpm
+
 clean:
-	rm -f *~
-	rm -rf ${SCRATCH}
+	rm -f *~ $(NAME)-$(VERSION).tar.gz
+	rm -rf $(build)
 
-sdist:
-	@mkdir -p  ${SCRATCH}/SOURCES/
-	@mkdir -p  ${SCRATCH}/${NAME}-${VERSION}
-	rsync -HaS --exclude ".svn" --exclude "scratch" * ${SCRATCH}/${NAME}-${VERSION}/
-	cd ${SCRATCH}; tar --gzip -cf ${NAME}-${VERSION}.tar.gz ${NAME}-${VERSION}/; cd ${PWD}
-
-deb: sdist
-	echo "${NAME} (${VERSION}-${RELEASE}) dummy;" > ${SCRATCH}/${NAME}-${VERSION}/debian/changelog
-	echo "  * No data" >>  ${SCRATCH}/${NAME}-${VERSION}/debian/changelog
-	echo " -- ${PACKAGER}  ${DATE}" >> ${SCRATCH}/${NAME}-${VERSION}/debian/changelog
-
-	@sed -i "s/Package:.*/Package: ${NAME}/" ${control}
-	@sed -i "s/Source:.*/Source: ${NAME}/" ${control}
-	@sed -i "s/Version:.*/Version: ${VERSION}/" ${control}
-	@sed -i "s/Maintainer:.*/Maintainer: ${PACKAGER}/" ${control}
-	@sed -i "s/Description:.*/Description: ${DESCRIPTION}/" ${control}
-	@sed -i "s/Section:.*/Section: ${GROUP}/" ${control}
-	cd ${SCRATCH}/${NAME}-${VERSION}; dpkg-buildpackage -us -uc; cd ${PWD}
-
-rpm: sdist
-	mkdir -p ${topdir}/BUILD
-	mkdir -p ${topdir}/RPMS
-	mkdir -p ${topdir}/SRPMS
-	mkdir -p ${topdir}/SOURCES
-	mkdir -p ${topdir}/SPECS
-	cp ${SCRATCH}/${NAME}-${VERSION}.tar.gz ${topdir}/SOURCES
-	rpmbuild --define "_topdir ${topdir}" -ba ${NAME}.spec
+.PHONY: dist srpm rpm sources clean 
