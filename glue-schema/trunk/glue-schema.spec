@@ -1,15 +1,12 @@
 # TODO:
-# upstream: add licensing file (and confirm the one configurated here)
 # upstream: add some README file
 
 Name:           glue-schema
-Version:        2.0.4
+Version:        2.0.5
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE Schema
 Group:          Development/Tools
-#               The INFN license is BSD with advertising
-#               Open Grid Forum Full Copyright Notice
-License:        BSD with advertising and Copyright only
+License:        ASL 2.0
 URL:            https://svnweb.cern.ch/trac/gridinfo/browser/glue-schema/
 #               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_3/?op=dl"
 Source:         %{name}-%{version}.tar.gz
