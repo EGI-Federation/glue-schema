@@ -1,20 +1,17 @@
-# TODO:
-# upstream: add some README file
-
 Name:           glue-schema
 Version:        2.0.5
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE Schema
 Group:          Development/Tools
 License:        ASL 2.0
-URL:            https://svnweb.cern.ch/trac/gridinfo/browser/glue-schema/
-#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_3/?op=dl"
+URL:            http://forge.ogf.org/sf/projects/glue-wg
+#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_5/?op=dl"
 Source:         %{name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
-LDAP schema file for the GLUE Schema version 2.0
+LDAP schema files for the GLUE Schema version 2.0
 
 %prep
 %setup -q
@@ -26,8 +23,8 @@ LDAP schema file for the GLUE Schema version 2.0
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/%{_sysconfdir}/ldap/schema/
-install -m 644 etc/ldap/schema/* %{buildroot}/%{_sysconfdir}/ldap/schema/
+mkdir -p %{buildroot}/%{_sysconfdir}/ldap/schema
+install -m 644 -p etc/ldap/schema/* %{buildroot}/%{_sysconfdir}/ldap/schema
 
 %clean
 rm -rf %{buildroot}
@@ -40,8 +37,6 @@ rm -rf %{buildroot}
 %changelog
 * Thu Feb 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.3-1
 - Updated packaging
-* Fri Feb 12 2010 Mattias Ellert <mattias.ellert@fysast.uu.se> - 2.0.3-1
-- Updated packaging
+
 * Fri Jul 10 2009 Laurence Field <laurence.field@cern.ch> -  2.0.1-1
 - First release
-
