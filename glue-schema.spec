@@ -1,11 +1,11 @@
 Name:           glue-schema
-Version:        2.0.5
+Version:        2.0.6
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE Schema
 Group:          Development/Tools
 License:        ASL 2.0
 URL:            http://forge.ogf.org/sf/projects/glue-wg
-#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_5/?op=dl"
+#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_6/?op=dl"
 Source:         %{name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -35,6 +35,9 @@ rm -rf %{buildroot}
 %doc debian/copyright
 
 %changelog
+* Fir Jun 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.5-1
+- Updated Licences
+
 * Thu Feb 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.3-1
 - Updated packaging
 
