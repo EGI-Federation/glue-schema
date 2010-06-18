@@ -35,7 +35,7 @@ rm -rf %{buildroot}
 %doc debian/copyright
 
 %changelog
-* Fir Jun 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.5-1
+* Fri Jun 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.6-1
 - Updated Licences
 
 * Thu Feb 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.3-1
