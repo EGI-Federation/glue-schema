@@ -1299,13 +1299,15 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.6.2
 	activities called jobs; it can be used to expose also complementary
 	capabilities (e.g., reservation, proxy manipulation)'
         AUXILIARY
-        MUST GLUE2ComputingEndpointComputingServiceForeignKey
         MAY ( GLUE2ComputingEndpointStaging $
-	GLUE2ComputingEndpointJobDescription $ GLUE2ComputingEndpointTotalJobs $
-	GLUE2ComputingEndpointRunningJobs $ GLUE2ComputingEndpointWaitingJobs $
+	GLUE2ComputingEndpointJobDescription $ 
+        GLUE2ComputingEndpointTotalJobs $
+	GLUE2ComputingEndpointRunningJobs $ 
+        GLUE2ComputingEndpointWaitingJobs $
 	GLUE2ComputingEndpointStagingJobs $ 
 	GLUE2ComputingEndpointSuspendedJobs $
-	GLUE2ComputingEndpointPreLRMSWaitingJobs )
+	GLUE2ComputingEndpointPreLRMSWaitingJobs $
+        GLUE2ComputingEndpointComputingServiceForeignKey )
  )
 
 
@@ -1789,9 +1791,9 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.6.3
 	by a set of configuration parameters and characterized by status 
 	information'
         AUXILIARY
-        MUST ( GLUE2ComputingShareServingState $
-	GLUE2ComputingShareComputingServiceForeignKey )
-        MAY ( GLUE2ComputingShareMappingQueue $ GLUE2ComputingShareMaxWallTime $
+        MUST ( GLUE2ComputingShareServingState )
+        MAY ( GLUE2ComputingShareMappingQueue $ 
+        GLUE2ComputingShareMaxWallTime $
 	GLUE2ComputingShareMaxMultiSlotWallTime $ 
 	GLUE2ComputingShareMinWallTime $
 	GLUE2ComputingShareDefaultWallTime $ GLUE2ComputingShareMaxCPUTime $
@@ -1823,7 +1825,8 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.6.3
 	GLUE2ComputingShareUsedSlots $ GLUE2ComputingShareRequestedSlots $ 
 	GLUE2ComputingShareReservationPolicy $ GLUE2ComputingShareTag $ 
 	GLUE2ComputingShareComputingEndpointForeignKey $
-	GLUE2ComputingShareExecutionEnvironmentForeignKey )
+	GLUE2ComputingShareExecutionEnvironmentForeignKey $ 
+	GLUE2ComputingShareComputingServiceForeignKey )
  )
 
 
@@ -2095,7 +2098,6 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.6.4
 	managed resources. The computing manager is also known as Local 
 	Resource Management System (LRMS).'
         AUXILIARY
-	MUST GLUE2ComputingManagerComputingServiceForeignKey
         MAY ( GLUE2ComputingManagerReservation $
 	GLUE2ComputingManagerBulkSubmission $ 
 	GLUE2ComputingManagerTotalPhysicalCPUs $
@@ -2116,7 +2118,8 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.6.4
 	GLUE2ComputingManagerWorkingAreaMultiSlotLifeTime $
 	GLUE2ComputingManagerCacheTotal $ GLUE2ComputingManagerCacheFree $
 	GLUE2ComputingManagerTmpDir $ GLUE2ComputingManagerScratchDir $
-	GLUE2ComputingManagerApplicationDir )
+	GLUE2ComputingManagerApplicationDir $
+        GLUE2ComputingManagerComputingServiceForeignKey )
  )
 
 # File:    schema/6-05-Benchmark.schema
@@ -2420,8 +2423,7 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.6.6
 	GLUE2ExecutionEnvironmentMainMemorySize $ 
 	GLUE2ExecutionEnvironmentOSFamily $
 	GLUE2ExecutionEnvironmentConnectivityIn $
-	GLUE2ExecutionEnvironmentConnectivityOut $
-	GLUE2ExecutionEnvironmentComputingManagerForeignKey )
+	GLUE2ExecutionEnvironmentConnectivityOut )
         MAY ( GLUE2ExecutionEnvironmentVirtualMachine $
 	GLUE2ExecutionEnvironmentTotalInstances $
 	GLUE2ExecutionEnvironmentUsedInstances $
@@ -2438,7 +2440,8 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.6.6
 	GLUE2ExecutionEnvironmentVirtualMemorySize $ 
 	GLUE2ExecutionEnvironmentOSName $
 	GLUE2ExecutionEnvironmentOSVersion $ 
-	GLUE2ExecutionEnvironmentNetworkInfo )
+	GLUE2ExecutionEnvironmentNetworkInfo $
+	GLUE2ExecutionEnvironmentComputingManagerForeignKey )
  )
 
 
@@ -3402,7 +3405,7 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.7.4
         DESC 'A network location having a well-defined interface and exposing
 	the service functionalities'
         AUXILIARY
-        MUST GLUE2StorageEndpointStorageServiceForeignKey
+        MAY GLUE2StorageEndpointStorageServiceForeignKey
  )
 
 # File:    schema/7-05-StorageShare.schema
@@ -3547,8 +3550,7 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.7.5
         AUXILIARY
         MUST ( GLUE2StorageShareServingState $ 
 	GLUE2StorageShareSharingID $
-	GLUE2StorageShareAccessLatency $ 
-	GLUE2StorageShareStorageServiceForeignKey )
+	GLUE2StorageShareAccessLatency )
         MAY ( GLUE2StorageSharePath $ 
 	GLUE2StorageShareAccessMode $
 	GLUE2StorageShareRetentionPolicy $ 
@@ -3557,7 +3559,8 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.7.5
 	GLUE2StorageShareMaximumLifeTime $
 	GLUE2StorageShareTag $ 
 	GLUE2StorageShareStorageEndpointForeignKey $
-	GLUE2StorageShareDataStoreForeignKey )
+	GLUE2StorageShareDataStoreForeignKey $
+	GLUE2StorageShareStorageServiceForeignKey )
  )
 
 # File:    schema/7-06-StorageShareCapacity.schema
@@ -3671,7 +3674,7 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.7.7
 	storage resources. It can describe also aggregated information about 
 	the managed resources.'
         AUXILIARY
-        MUST GLUE2StorageManagerStorageServiceForeignKey
+        MAY GLUE2StorageManagerStorageServiceForeignKey
  )
 
 # File:    schema/7-08-DataStore.schema
