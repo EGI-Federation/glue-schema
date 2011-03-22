@@ -1,5 +1,5 @@
 Name:           glue-schema
-Version:        2.0.6
+Version:        2.0.7
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE Schema
 Group:          Development/Tools
@@ -35,11 +35,11 @@ rm -rf %{buildroot}
 %doc debian/copyright
 
 %changelog
+* Tue Mar 22 2011 Laurence Field <laurence.field@cern.ch> -  2.0.7-1
+- Derived FKs are now optional
 * Fri Jun 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.6-1
 - Updated Licences
-
 * Thu Feb 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.3-1
 - Updated packaging
-
 * Fri Jul 10 2009 Laurence Field <laurence.field@cern.ch> -  2.0.1-1
 - First release
