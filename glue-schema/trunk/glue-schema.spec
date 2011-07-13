@@ -1,5 +1,5 @@
 Name:           glue-schema
-Version:        2.0.7
+Version:        2.0.8
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE Schema
 Group:          Development/Tools
@@ -35,6 +35,8 @@ rm -rf %{buildroot}
 %doc debian/copyright
 
 %changelog
+* Wed Jul 13 2011 Laurence Field <laurence.field@cern.ch> -  2.0.8-1
+- Addressed #84300 (Merged ARC and gLite MDS schema)
 * Tue Mar 22 2011 Laurence Field <laurence.field@cern.ch> -  2.0.7-1
 - Derived FKs are now optional
 * Fri Jun 25 2010 Daniel Johansson <daniel@nsc.liu.se> - 2.0.6-1
