@@ -6,12 +6,12 @@ Group:          Development/Tools
 License:        Apache Software License
 URL:            http://forge.ogf.org/sf/projects/glue-wg
 #               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_6/?op=dl"
-Source:         %{name}-%{version}.tar.gz
+Source:         %{name}-%{version}.src.tgz
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
-LDAP schema files for the GLUE Schema version 2.0
+LDAP schema files for the GLUE Schema
 
 %prep
 %setup -q
