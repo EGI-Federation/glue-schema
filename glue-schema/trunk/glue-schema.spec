@@ -1,6 +1,6 @@
 Name:           glue-schema
 Version:        2.0.8
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE Schema
 Group:          Development/Tools
 License:        Apache Software License
@@ -11,7 +11,7 @@ BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
-LDAP schema files for the GLUE Schema version 2.0
+LDAP schema files for the GLUE Schema
 
 %prep
 %setup -q
