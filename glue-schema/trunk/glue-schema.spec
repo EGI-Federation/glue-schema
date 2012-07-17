@@ -1,7 +1,7 @@
 Name:           glue-schema
 Version:        2.0.8
 Release:        1%{?dist}
-Summary:        LDAP schema files for the GLUE Schema
+Summary:        LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 Group:          Development/Tools
 License:        Apache Software License
 URL:            http://forge.ogf.org/sf/projects/glue-wg
@@ -11,7 +11,7 @@ BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
-LDAP schema files for the GLUE Schema
+LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 
 %prep
 %setup -q
