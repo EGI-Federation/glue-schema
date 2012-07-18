@@ -1,6 +1,6 @@
 Name:           glue-schema
 Version:        2.0.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 Group:          Development/Tools
 License:        Apache Software License
