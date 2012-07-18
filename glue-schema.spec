@@ -5,7 +5,7 @@ Summary:        LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 Group:          Development/Tools
 License:        Apache Software License
 URL:            http://forge.ogf.org/sf/projects/glue-wg
-#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_6/?op=dl"
+#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_8_2/?op=dl"
 Source:         %{name}-%{version}.src.tgz
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -35,6 +35,8 @@ rm -rf %{buildroot}
 %doc debian/copyright
 
 %changelog
+* Wed Jul 18 2012 Maria Alandes <maria.alandes.pradillo@cern.ch> - 2.0.8-2
+- BUG 95044: Improved summary and description to describe that both glue 1.3 and glue 2.0 
 * Wed Jul 13 2011 Laurence Field <laurence.field@cern.ch> -  2.0.8-1
 - Addressed #84300 (Merged ARC and gLite MDS schema)
 * Tue Mar 22 2011 Laurence Field <laurence.field@cern.ch> -  2.0.7-1
