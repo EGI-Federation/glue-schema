@@ -1,11 +1,11 @@
 Name:           glue-schema
-Version:        2.0.9
+Version:        2.0.10
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 Group:          Development/Tools
 License:        ASL 2.0
 URL:            http://forge.ogf.org/sf/projects/glue-wg
-#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_8_2/?op=dl"
+#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_10_1/?op=dl"
 Source:         %{name}-%{version}.src.tgz
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -35,6 +35,9 @@ rm -rf %{buildroot}
 %doc debian/copyright
 
 %changelog
+* Fri Jan 11 2013 Maria Alandes <maria.alandes.pradillo@cern.ch> - 2.0.10-1
+- Define GLUE2GroupID as first name for the GLUE2Group object to be backwards compatible with previous BDII versions
+
 * Wed Nov 21 2012 Maria Alandes <maria.alandes.pradillo@cern.ch> - 2.0.9-1
 - BUG #97717: DIT and Schema changes requested by ARC
 
