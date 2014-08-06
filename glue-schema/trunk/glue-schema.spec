@@ -1,11 +1,11 @@
 Name:           glue-schema
-Version:        2.0.10
+Version:        2.0.11
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 Group:          Development/Tools
 License:        ASL 2.0
 URL:            http://forge.ogf.org/sf/projects/glue-wg
-#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_10_1/?op=dl"
+#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_11_1/?op=dl"
 Source:         %{name}-%{version}.src.tgz
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -35,6 +35,10 @@ rm -rf %{buildroot}
 %doc debian/copyright
 
 %changelog
+* Wed Aug 06 2014 Maria Alandes <maria.alandes.pradillo@cern.ch> - 2.0.11-1
+- #GRIDINFO-53: All the entities but Entity moved to type STRUCTURAL
+- #GRIDINFO-9: GLUE 2 booleans should be DirectoryString not LDAP boolean
+
 * Fri Jan 11 2013 Maria Alandes <maria.alandes.pradillo@cern.ch> - 2.0.10-1
 - Define GLUE2GroupID as first name for the GLUE2Group object to be backwards compatible with previous BDII versions
 
