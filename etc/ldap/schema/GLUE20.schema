@@ -21,8 +21,8 @@
 #          Florido Paganelli (florido.paganelli@hep.lu.se), Lund University
 #
 #
-# Schema Version: 2.0rc5
-# Last updated: 2013-01-11
+# Schema Version: 2.0rc6
+# Last updated: 2014-05-08
 #
 
 # File:    schema/01-Group.schema
@@ -36,7 +36,7 @@
 # Group
 
 attributetype ( 1.3.6.1.4.1.6757.100.1.1.36.1 
-        NAME ( 'GLUE2GroupID' 'GLUE2GroupName' )
+        NAME ( 'GLUE2GroupID' 'GLUE2GroupName' 'GLUE2GroupLocalID' )
         DESC 'Local ID, not unique'
         EQUALITY caseExactMatch 
         SUBSTR caseExactSubstringsMatch 
@@ -381,8 +381,9 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.6.1
         NAME 'GLUE2AdminDomainDistributed' 
         DESC 'True if the services managed by the AdminDomain are considered
 	geographically distributed by the administrators themselves'
-        EQUALITY booleanMatch
-        SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
@@ -1125,7 +1126,8 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.15
         DESC 'Statements, rules or assertions that provide coarse-granularity
 	information about the authorization of access by groups of actors to an
 	Endpoint'
-        AUXILIARY 
+	    SUP 'GLUE2Policy'
+        STRUCTURAL 
         MUST GLUE2AccessPolicyEndpointForeignKey
  )
 
@@ -1144,7 +1146,8 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.16
         NAME 'GLUE2MappingPolicy' 
         DESC 'Statements, rules or assertions that provide coarse-granularity
 	information about the mapping or UserDomain requests to a Share'
-        AUXILIARY 
+        SUP 'GLUE2Policy'
+        STRUCTURAL 
         MUST GLUE2MappingPolicyShareForeignKey
  )
 
@@ -1603,8 +1606,9 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.19.25
         NAME 'GLUE2ComputingSharePreemption'
         DESC 'True if the computing manager (i.e., LRMS) enables preemption of
 	jobs; a preempted job is supposed to be automatically resumed'
-	EQUALITY    booleanMatch
-	SYNTAX      1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
@@ -1878,8 +1882,9 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.20.1
         NAME 'GLUE2ComputingManagerReservation'
         DESC 'True if the computing manager (i.e, LRMS) supports advance
 	reservation'
-        EQUALITY    booleanMatch
-        SYNTAX      1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
@@ -1887,8 +1892,9 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.20.2
         NAME 'GLUE2ComputingManagerBulkSubmission'
         DESC 'True if the computing manager (i.e, LRMS) supports the bulk
 	submission'
-        EQUALITY    booleanMatch
-        SYNTAX      1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
@@ -1944,8 +1950,9 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.20.8
         NAME 'GLUE2ComputingManagerHomogeneous'
         DESC 'True if the computing manager has only one type of execution
 	environment'
-        EQUALITY    booleanMatch
-        SYNTAX      1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
@@ -1974,8 +1981,9 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.20.11
 	directories of the Grid jobs; this property is true if the working area 
 	is shared across different execution environment instances (i.e., 
 	cluster nodes)'
-        EQUALITY    booleanMatch
-        SYNTAX      1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
@@ -1983,8 +1991,9 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.20.12
         NAME 'GLUE2ComputingManagerWorkingAreaGuaranteed'
         DESC 'True if the job is guaranteed the full extent of the
 	WorkingAreaTotal attribute'
-        EQUALITY    booleanMatch
-        SYNTAX      1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
@@ -2248,8 +2257,9 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.22.2
         DESC 'True if the execution environment is based on a virtual machine
 	(in this case, the values of the other attributes are related to the
 	virtualized environment and not to the hosting environment)'
-        EQUALITY    booleanMatch
-        SYNTAX      1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
@@ -2418,16 +2428,18 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.22.19
 attributetype ( 1.3.6.1.4.1.6757.100.1.1.22.20
         NAME 'GLUE2ExecutionEnvironmentConnectivityIn'
         DESC 'Permission for direct inbound connectivity, even if limited'
-        EQUALITY    booleanMatch
-        SYNTAX      1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
 attributetype ( 1.3.6.1.4.1.6757.100.1.1.22.21
         NAME 'GLUE2ExecutionEnvironmentConnectivityOut'
         DESC 'Permission for direct outbound connectivity, even if limited'
-        EQUALITY    booleanMatch
-        SYNTAX      1.3.6.1.4.1.1466.115.121.1.7
+        EQUALITY caseExactMatch
+        SUBSTR caseExactSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
         SINGLE-VALUE
  )
 
@@ -3135,7 +3147,8 @@ attributetype ( 1.3.6.1.4.1.6757.100.1.1.25.39
 objectclass ( 1.3.6.1.4.1.6757.100.1.1.25
         NAME 'GLUE2ComputingActivity'
         DESC 'An activity managed by an OGSA execution capability service'
-        AUXILIARY
+        SUP 'GLUE2Activity'
+        STRUCTURAL
         MUST ( GLUE2ComputingActivityState $ GLUE2ComputingActivityOwner )
         MAY ( GLUE2ComputingActivityType $ 
 	GLUE2ComputingActivityIDFromEndpoint $ 
@@ -3724,7 +3737,8 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.33
         DESC 'The primary software component locally managing one or more
 	storage resources. It can describe also aggregated information about 
 	the managed resources.'
-        AUXILIARY
+        SUP 'GLUE2Manager'
+        STRUCTURAL
         MAY GLUE2StorageManagerStorageServiceForeignKey
  )
 
@@ -3800,7 +3814,8 @@ objectclass ( 1.3.6.1.4.1.6757.100.1.1.34
 	(storage manager), part of a storage service, reachable via one or 
 	more endpoints and having one or more shares defined on it. A storage 
 	resource refers to a category with summary information on the capacity'
-        AUXILIARY
+        SUP 'GLUE2Resource'
+        STRUCTURAL
         MUST ( GLUE2DataStoreType $ 
 	GLUE2DataStoreLatency )
         MAY ( GLUE2DataStoreTotalSize $ 
