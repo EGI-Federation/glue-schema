@@ -1,3 +1,9 @@
+glue-schema (2.0.11-1) UNRELEASED; urgency=low
+
+  * New upstream release
+
+ -- Baptiste Grenier <baptiste.grenier@egi.eu>  Wed, 07 Jun 2017 15:33:00 +0100
+
 glue-schema (2.0.8-1) UNRELEASED; urgency=low
 
   * New upstream release
