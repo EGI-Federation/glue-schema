@@ -3,6 +3,7 @@ name: Create packages and test installation
 
 on:
   push:
+    branches: [ master ]
   pull_request:
 
 jobs:
