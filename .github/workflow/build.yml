@@ -2,6 +2,7 @@
 name: Create packages and test installation
 
 on:
+  push:
   pull_request:
 
 jobs:
