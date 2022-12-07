@@ -4,9 +4,8 @@ Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 Group:          Development/Tools
 License:        ASL 2.0
-URL:            http://forge.ogf.org/sf/projects/glue-wg
-#               wget -O %{name}-%{version}.tar.gz "http://svnweb.cern.ch/world/wsvn/gridinfo/glue-schema/tags/R_2_0_11_1/?op=dl"
-Source:         %{name}-%{version}.src.tgz
+URL:            https://github.com/EGI-Federation/glue-schema
+Source:         %{name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -15,8 +14,6 @@ LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 
 %prep
 %setup -q
-# Change to the one below if you are building against downloaded tarball from svnweb.cern.ch
-#%setup -q -n R_2_0_3.r97
 
 %build 
 # Nothing to build
