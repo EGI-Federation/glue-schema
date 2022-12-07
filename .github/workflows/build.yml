@@ -82,7 +82,6 @@ jobs:
           name: rpms7
       - name: Install generated RPMs
         run: |
-          yum install -y epel-release
           yum localinstall -y glue-schema-*.el7.noarch.rpm
 
   centos8-install:
@@ -96,8 +95,6 @@ jobs:
           name: rpms8
       - name: Install generated RPMs
         run: |
-          yum install -y epel-release
-          sed -i 's/^enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
           yum localinstall -y glue-schema-*.el8.noarch.rpm
 
   centos9-install:
@@ -111,5 +108,4 @@ jobs:
           name: rpms9
       - name: Install generated RPMs
         run: |
-          yum install -y epel-release
           yum localinstall -y glue-schema-*.el9.noarch.rpm
