@@ -1,8 +1,9 @@
 # README for glue-schema package
 
-Home for the GLUE Specification: http://forge.ogf.org/sf/projects/glue-wg
+Home for the GLUE Specification:
+[OGF Forge](http://forge.ogf.org/sf/projects/glue-wg).
 
-Documentation: http://gridinfo-documentation.readthedocs.io
+Documentation: [readthedocs](http://gridinfo-documentation.readthedocs.io).
 
 ## Installing from source
 
