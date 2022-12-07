@@ -2,17 +2,15 @@
 name: Create packages and test installation
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
 
 jobs:
   centos7:
-    name: Build CentOS 7 rpms
+    name: Build CentOS 7 RPMs
     runs-on: ubuntu-latest
-    container: centos:7
+    container: quay.io/centos/centos:7
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Install build requisites
@@ -22,19 +20,19 @@ jobs:
         run: |
           make rpm
           rpmlint --file .rpmlint.ini build/RPMS/noarch/*.rpm
-      - name: Upload rpms
-        uses: actions/upload-artifact@v2
+      - name: Upload RPMs
+        uses: actions/upload-artifact@v3
         with:
           name: rpms7
           path: |
             build/RPMS/noarch/glue-schema-*.el7.noarch.rpm
 
   centos8:
-    name: Build CentOS 8 rpms
+    name: Build CentOS Stream 8 RPMs
     runs-on: ubuntu-latest
-    container: centos:8
+    container: quay.io/centos/centos:stream8
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Install build requisites
@@ -44,37 +42,74 @@ jobs:
         run: |
           make rpm
           rpmlint --file .rpmlint.ini build/RPMS/noarch/*.rpm
-      - name: Upload rpms
-        uses: actions/upload-artifact@v2
+      - name: Upload RPMs
+        uses: actions/upload-artifact@v3
         with:
           name: rpms8
           path: |
-            build/RPMS/noarch/glue-schema-*.el8.noarch.rpm
+            build/RPMS/noarch/glue-schema-*-1.el8.noarch.rpm
 
-  centos7-install:
-    name: Install CentOS 7 rpms
-    needs: centos7
+  centos9:
+    name: Build CentOS Stream 9 RPMs
     runs-on: ubuntu-latest
-    container: centos:7
+    container: quay.io/centos/centos:stream9
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/checkout@v3
         with:
-          name: rpms7
-      - name: Install generated rpms
+          fetch-depth: 0
+      - name: Install build requisites
         run: |
-          yum install -y epel-release
-          yum localinstall -y glue-schema-*.rpm
-
-  centos8-install:
-    name: Install CentOS 8 rpms
-    needs: centos8
-    runs-on: ubuntu-latest
-    container: centos:8
-    steps:
-      - uses: actions/download-artifact@v2
+          yum install -y rpm-build rpmlint make rsync systemd-rpm-macros
+      - name: build rpm
+        run: |
+          make rpm
+          rpmlint --file .rpmlint.ini build/RPMS/noarch/*.rpm
+      - name: Upload RPMs
+        uses: actions/upload-artifact@v3
         with:
           name: rpms8
-      - name: Install generated rpms
+          path: |
+            build/RPMS/noarch/glue-schema-*.el9.noarch.rpm
+
+  centos7-install:
+    name: Install CentOS 7 RPMs
+    needs: centos7
+    runs-on: ubuntu-latest
+    container: quay.io/centos/centos:7
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: rpms7
+      - name: Install generated RPMs
         run: |
           yum install -y epel-release
-          yum localinstall -y  glue-schema-*.rpm
+          yum localinstall -y glue-schema-*.el7.noarch.rpm
+
+  centos8-install:
+    name: Install CentOS Stream 8 RPMs
+    needs: centos8
+    runs-on: ubuntu-latest
+    container: quay.io/centos/centos:stream8
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: rpms8
+      - name: Install generated RPMs
+        run: |
+          yum install -y epel-release
+          sed -i 's/^enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
+          yum localinstall -y glue-schema-*.el8.noarch.rpm
+
+  centos9-install:
+    name: Install CentOS Stream 9 RPMs
+    needs: centos9
+    runs-on: ubuntu-latest
+    container: quay.io/centos/centos:stream9
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: rpms9
+      - name: Install generated RPMs
+        run: |
+          yum install -y epel-release
+          yum localinstall -y glue-schema-*.el9.noarch.rpm
