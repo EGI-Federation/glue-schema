@@ -1,3 +1,10 @@
+glue-schema (2.1.0-1) UNRELEASED; urgency=low
+
+  * Build packages for CentOS 7, Stream 8 and Stream 9 (#4) (Baptiste Grenier)
+  * Lint and build with GitHub Actions, add community files (#3) (Andrea Manzi)
+
+ -- Baptiste Grenier <baptiste.grenier@egi.eu>  Tue, 10 Jan 2023 11:35:00 +0100
+
 glue-schema (2.0.11-1) UNRELEASED; urgency=low
 
   * New upstream release

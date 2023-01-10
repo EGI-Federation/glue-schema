@@ -1,5 +1,5 @@
 Name:           glue-schema
-Version:        2.0.11
+Version:        2.1.0
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 Group:          Development/Tools
@@ -37,6 +37,10 @@ rm -rf %{buildroot}
 %license %{_datadir}/licenses/%{name}-%{version}/LICENSE.txt
 
 %changelog
+* Tue Jan 10 2023 Baptiste Grenier <baptiste.greneir@egi.eu> - 2.1.0-1
+- Build packages for CentOS 7, Stream 8 and Stream 9 (#4) (Baptiste Grenier)
+- Lint and build with GitHub Actions, add community files (#3) (Andrea Manzi)
+
 * Wed Aug 06 2014 Maria Alandes <maria.alandes.pradillo@cern.ch> - 2.0.11-1
 - #GRIDINFO-53: All the entities but Entity moved to type STRUCTURAL
 - #GRIDINFO-9: GLUE 2 booleans should be DirectoryString not LDAP boolean

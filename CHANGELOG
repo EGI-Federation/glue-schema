@@ -8,5 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
-## [X.X.XX]
-- Change description (#PR_NUMBER) (AUTHOR)
+## [2.1.0] 2023-01-10
+- Build packages for CentOS 7, Stream 8 and Stream 9 (#4) (Baptiste Grenier)
+- Lint and build with GitHub Actions, add community files (#3) (Andrea Manzi)
+
+## [2.0.11] 2014-08-06
+- All the entities but Entity moved to type STRUCTURAL (#GRIDINFO-53) (Maria Alandes)
+- GLUE 2 booleans should be DirectoryString not LDAP boolean (#GRIDINFO-9) (Maria Alandes)
