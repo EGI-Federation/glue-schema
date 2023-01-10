@@ -1,6 +1,6 @@
-NAME= $(shell grep Name: *.spec | sed 's/^[^:]*:[^a-zA-Z]*//' )
-VERSION= $(shell grep Version: *.spec | sed 's/^[^:]*:[^0-9]*//' )
-RELEASE= $(shell grep Release: *.spec |cut -d"%" -f1 |sed 's/^[^:]*:[^0-9]*//')
+NAME=$(shell grep Name: *.spec | sed 's/^[^:]*:[^a-zA-Z]*//')
+VERSION=$(shell grep Version: *.spec | sed 's/^[^:]*:[^0-9]*//')
+RELEASE=$(shell grep Release: *.spec | cut -d"%" -f1 | sed 's/^[^:]*:[^0-9]*//')
 build=$(shell pwd)/build
 DATE=$(shell date "+%a, %d %b %Y %T %z")
 dist=$(shell rpm --eval '%dist' | sed 's/%dist/.el5/')
