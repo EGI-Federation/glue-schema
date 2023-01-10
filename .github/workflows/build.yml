@@ -84,6 +84,7 @@ jobs:
         run: |
           yum localinstall -y glue-schema-*.el7.noarch.rpm
 
+  # Dependency from PowerTools: openldap-servers
   centos8-install:
     name: Install CentOS Stream 8 RPMs
     needs: centos8
@@ -95,8 +96,10 @@ jobs:
           name: rpms8
       - name: Install generated RPMs
         run: |
+          sed -i 's/^enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
           yum localinstall -y glue-schema-*.el8.noarch.rpm
 
+  # XXX Dependencies from EPEL: openldap-servers
   centos9-install:
     name: Install CentOS Stream 9 RPMs
     needs: centos9
@@ -108,4 +111,5 @@ jobs:
           name: rpms9
       - name: Install generated RPMs
         run: |
+          yum install -y epel-release
           yum localinstall -y glue-schema-*.el9.noarch.rpm
