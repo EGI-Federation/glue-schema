@@ -8,6 +8,9 @@ URL:            https://github.com/EGI-Federation/glue-schema
 Source:         %{name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRequires: rsync
+BuildRequires: make
+Requires: openldap-servers
 
 %description
 LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
@@ -20,8 +23,7 @@ LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/%{_sysconfdir}/ldap/schema
-install -m 644 -p etc/ldap/schema/* %{buildroot}/%{_sysconfdir}/ldap/schema
+make install prefix=%{buildroot}
 
 %clean
 rm -rf %{buildroot}
@@ -29,7 +31,10 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/ldap
-%doc debian/copyright
+%doc %{_docdir}/%{name}-%{version}/README.md
+%doc %{_docdir}/%{name}-%{version}/AUTHORS.md
+%license %{_datadir}/licenses/%{name}-%{version}/COPYRIGHT
+%license %{_datadir}/licenses/%{name}-%{version}/LICENSE.txt
 
 %changelog
 * Wed Aug 06 2014 Maria Alandes <maria.alandes.pradillo@cern.ch> - 2.0.11-1
