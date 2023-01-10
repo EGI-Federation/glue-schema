@@ -12,11 +12,12 @@ install:
 	@echo installing ...
 	@install -d ${prefix}/etc/ldap/schema
 	@install --mode=0644 etc/ldap/schema/*.schema ${prefix}/etc/ldap/schema
-	@mkdir -p $(prefix)/usr/share/doc/glue-schema/
-	@install -m 0644 README.md $(prefix)/usr/share/doc/glue-schema/
-	@install -m 0644 AUTHORS.md $(prefix)/usr/share/doc/glue-schema/
-	@install -m 0644 COPYRIGHT $(prefix)/usr/share/doc/glue-schema/
-	@install -m 0644 LICENSE.txt $(prefix)/usr/share/doc/glue-schema/
+	@mkdir -p $(prefix)/usr/share/doc/$(NAME)-$(VERSION)/
+	@mkdir -p $(prefix)/usr/share/licenses/$(NAME)-$(VERSION)/
+	@install -m 0644 README.md $(prefix)/usr/share/doc/$(NAME)-$(VERSION)/
+	@install -m 0644 AUTHORS.md $(prefix)/usr/share/doc/$(NAME)-$(VERSION)/
+	@install -m 0644 COPYRIGHT $(prefix)/usr/share/licenses/$(NAME)-$(VERSION)/
+	@install -m 0644 LICENSE.txt $(prefix)/usr/share/licenses/$(NAME)-$(VERSION)/
 
 dist:
 	@mkdir -p  $(build)/$(NAME)-$(VERSION)/
