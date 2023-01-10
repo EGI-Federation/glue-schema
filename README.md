@@ -9,10 +9,11 @@ Documentation: [readthedocs](http://gridinfo-documentation.readthedocs.io).
 
 ### On RHEL-based systems
 
-On RHEL-based systems, it's possible to install packages from [EGI UMD
-packages](https://go.egi.eu/umd). The packages are build from this repository,
-and tested to work with other components part of the Unified Middleware
-Distribution.
+On RHEL-based systems, it's possible to install packages from EPEL or
+[EGI UMD packages](https://go.egi.eu/umd).
+
+The UMD packages are built automatically from this repository, and tested to
+work with other components part of the Unified Middleware Distribution.
 
 ## Building packages
 
@@ -62,8 +63,8 @@ The DEB will be available into the `build/` directory.
 This procedure is not recommended for production deployment, please consider
 using packages.
 
-* Build dependencies: None
-* Runtime dependencies: openldap
+- Build dependencies: None
+- Runtime dependencies: openldap
 
 Get the source by cloning this repository and do a `make install`.
 
