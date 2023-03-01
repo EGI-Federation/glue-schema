@@ -5,16 +5,19 @@ Home for the GLUE Specification:
 
 Documentation: [readthedocs](http://gridinfo-documentation.readthedocs.io).
 
-## Installing from source
+## Installing from packages
 
-```sh
-make install
-```
+### On RHEL-based systems
 
-- Build dependencies: None
-- Runtime dependencies: openldap
+On RHEL-based systems, it's possible to install packages from EPEL or
+[EGI UMD packages](https://go.egi.eu/umd).
+
+The UMD packages are built automatically from this repository, and tested to
+work with other components part of the Unified Middleware Distribution.
 
 ## Building packages
+
+A Makefile allowing to build source tarball and packages is provided.
 
 ### Building a RPM
 
@@ -23,17 +26,18 @@ The required build dependencies are:
 - rpm-build
 - make
 - rsync
-- systemd-rpm-macros, for RHEL >= 8
 
-```sh
+```shell
 # Checkout tag to be packaged
-git clone https://github.com/EGI-Federation/bdii.git
-cd bdii
-git checkout X.X.X
+$ git clone https://github.com/EGI-Foundation/glue-schema.git
+$ cd glue-schema
+$ git checkout X.X.X
 # Building in a container
-docker run --rm -v $(pwd):/source -it centos:7
-yum install -y rpm-build make rsync
-cd /source && make rpm
+$ docker run --rm -v $(pwd):/source -it quay.io/centos/centos:7
+[root@8a9d60c61f42 /]# cd /source
+[root@8a9d60c61f42 /]# yum install -y rpm-build yum-utils
+[root@8a9d60c61f42 /]# yum-builddep -y glue-schema.spec
+[root@8a9d60c61f42 /]# make rpm
 ```
 
 The RPM will be available into the `build/RPMS` directory.
@@ -42,26 +46,38 @@ The RPM will be available into the `build/RPMS` directory.
 
 ```sh
 # Checkout tag to be packaged
-git clone https://github.com/EGI-Federation/bdii.git
-cd bdii
+git clone https://github.com/EGI-Federation/glue-schema.git
+cd glue-schema
 git checkout X.X.X
 # Building in a container using the source files
-docker run --rm -v $(pwd):/source -it ubuntu:xenial
+docker run --rm -v $(pwd):/source -it ubuntu:latest
 apt update
-apt install -y devscripts debhelper make rsync python-all-dev
+apt install -y devscripts debhelper make rsync
 cd /source && make deb
 ```
 
 The DEB will be available into the `build/` directory.
 
+## Installing from source
+
+This procedure is not recommended for production deployment, please consider
+using packages.
+
+- Build dependencies: None
+- Runtime dependencies: openldap
+
+Get the source by cloning this repository and do a `make install`.
+
 ## Preparing a release
 
 - Prepare a changelog from the last version, including contributors' names
 - Prepare a PR with
-  - Updating version and changelog in `glue-schema.spec`
-  - Updating version and changelog in `debian/changelog`
+  - Updating version and changelog in
+    - [CHANGELOG](CHANGELOG)
+    - [glue-schema.spec](glue-schema.spec)
+    - [debian/changelog](debian/changelog)
 - Once the PR has been merged tag and release a new version in GitHub
-  - Packages will be built using Travis and attached to the release page
+  - Packages will be built using GitHub Actions and attached to the release page
 
 ## History
 
