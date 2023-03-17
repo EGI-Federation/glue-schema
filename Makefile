@@ -3,7 +3,7 @@ VERSION=$(shell grep Version: *.spec | sed 's/^[^:]*:[^0-9]*//')
 RELEASE=$(shell grep Release: *.spec | cut -d"%" -f1 | sed 's/^[^:]*:[^0-9]*//')
 build=$(shell pwd)/build
 DATE=$(shell date "+%a, %d %b %Y %T %z")
-dist=$(shell rpm --eval '%dist' | sed 's/%dist/.el5/')
+dist=$(shell rpm --eval '%dist')
 
 default:
 	@echo "Nothing to do"
@@ -31,19 +31,19 @@ deb: dist
 	cd $(build)/$(NAME)-$(VERSION); dpkg-buildpackage -us -uc; cd -
 
 prepare: dist
-	@mkdir -p  $(build)/RPMS/noarch
-	@mkdir -p  $(build)/SRPMS/
-	@mkdir -p  $(build)/SPECS/
-	@mkdir -p  $(build)/SOURCES/
-	@mkdir -p  $(build)/BUILD/
+	@mkdir -p $(build)/RPMS/noarch
+	@mkdir -p $(build)/SRPMS/
+	@mkdir -p $(build)/SPECS/
+	@mkdir -p $(build)/SOURCES/
+	@mkdir -p $(build)/BUILD/
 	cp $(build)/$(NAME)-$(VERSION).tar.gz $(build)/SOURCES
 	cp $(NAME).spec $(build)/SPECS
 
 srpm: prepare
-	rpmbuild -bs --define="dist ${dist}" --define='_topdir ${build}' $(build)/SPECS/$(NAME).spec
+	rpmbuild -bs --define="dist $(dist)" --define='_topdir $(build)' $(build)/SPECS/$(NAME).spec
 
 rpm: srpm
-	rpmbuild --rebuild  --define='_topdir ${build}' --define="dist ${dist}" $(build)/SRPMS/$(NAME)-$(VERSION)-$(RELEASE)${dist}.src.rpm
+	rpmbuild --rebuild --define="dist $(dist)" --define='_topdir $(build)' $(build)/SRPMS/$(NAME)-$(VERSION)-$(RELEASE)$(dist).src.rpm
 
 clean:
 	rm -f *~ $(NAME)-$(VERSION).tar.gz
