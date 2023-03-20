@@ -1,5 +1,5 @@
 Name:           glue-schema
-Version:        2.1.0
+Version:        2.1.1
 Release:        1%{?dist}
 Summary:        LDAP schema files for the GLUE 1.3 and GLUE 2.0 Schema
 Group:          Development/Tools
@@ -37,6 +37,9 @@ rm -rf %{buildroot}
 %license %{_datadir}/licenses/%{name}-%{version}/LICENSE.txt
 
 %changelog
+* Tue Mar 17 2023 Baptiste Grenier <baptiste.greneir@egi.eu> - 2.1.1-1
+- Build and release packages using AlmaLinux 8 and 9. (#7) (Baptiste Grenier)
+
 * Tue Jan 10 2023 Baptiste Grenier <baptiste.greneir@egi.eu> - 2.1.0-1
 - Build packages for CentOS 7, Stream 8 and Stream 9 (#4) (Baptiste Grenier)
 - Lint and build with GitHub Actions, add community files (#3) (Andrea Manzi)
