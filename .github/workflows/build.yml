@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     container: quay.io/centos/centos:7
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Install build requisites
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     container: almalinux:${{ matrix.almalinux-version }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Install build requisites
